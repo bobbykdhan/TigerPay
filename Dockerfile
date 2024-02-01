@@ -1,7 +1,7 @@
 FROM docker.io/python:3.8-buster
 
 
-LABEL maintainer="Bobby Dhanoolal <>bobbydhanoolal@gmail.com>" tag="Tiger Pay Carde"
+LABEL maintainer="Bobby Dhanoolal <>bobbydhanoolal@gmail.com>" tag="Tiger Pay"
 
 
 WORKDIR /app
@@ -12,8 +12,8 @@ RUN apt-get -yq update && \
 
 COPY . .
 
-EXPOSE 22
+EXPOSE 8080
 
 WORKDIR /app/
 
-CMD ["python3", "app.py"]
+CMD ["python3", "api.py"]

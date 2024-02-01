@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, BackgroundTasks, Response, Form
 from twilio.twiml.messaging_response import MessagingResponse
 
-import main2
+import card_handling
 from image import upload_screenshot
 from order_manager import *
 from webdriver_handler import *
@@ -24,9 +24,12 @@ async def root():
     return {"message": "Hello World"}
 
 
+def getcard():
+    card_handling.get_card()
+
 @app.get("/get_card")
 async def get_card(BackgroundTasks: BackgroundTasks):
-    BackgroundTasks.add_task(main2.get_card())
+    BackgroundTasks.add_task(getcard())
     return {"message": "Card requested"}
 
 
