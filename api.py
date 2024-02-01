@@ -7,7 +7,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 import card_handling
 from image import upload_screenshot
-from order_manager import *
+
 from webdriver_handler import *
 
 load_dotenv()
