@@ -25,8 +25,8 @@ def get_card():
     card_link = driver.find_element(By.ID, "frontimage").get_attribute("src")
 
     driver.get(card_link)
-    time.sleep(1)
-    print("Card image is at" + upload_screenshot(driver,send_text=True))
+    time.sleep(0.5)
+    print("Card image is at " + upload_screenshot(driver,send_text=True))
 
     return driver
 

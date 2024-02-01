@@ -14,7 +14,6 @@ load_dotenv()
 
 app = FastAPI()
 
-# my_twilio.send_text("Personal Order server started")
 
 global driver
 
@@ -27,22 +26,29 @@ async def root():
 
 @app.get("/get_card")
 async def get_card(BackgroundTasks: BackgroundTasks):
-    BackgroundTasks.add_task(main2.get_card() )
+    BackgroundTasks.add_task(main2.get_card())
     return {"message": "Card requested"}
 
 
 
+# @app.get("/testScreenshot")
+# async def testScreenshot():
+#     driver = create_driver()
+#     driver.get("https://www.youtube.com")
+#     print("Created driver")
+#     time.sleep(5)
+#     link = upload_screenshot(driver, True, True)
+#     print("Uploaded screenshot")
+#     return {"message": "Screenshot is at: " + link}
 
-
-@app.get("/testScreenshot")
-async def testScreenshot():
-    driver = create_driver()
-    driver.get("https://www.youtube.com")
-    print("Created driver")
-    time.sleep(5)
-    link = upload_screenshot(driver, True, True)
-    print("Uploaded screenshot")
-    return {"message": "Screenshot is at: " + link}
+@app.get('/sms')
+@app.post('/sms')
+async def chat(From: str = Form(...), Body: str = Form(...)):
+    response = MessagingResponse()
+    response.message(f"Placeholder")
+    print(f"Text from: {From} and contains: {Body}")
+    return Response(content=str(response), media_type="application/xml")
+    # return {"message": f"Text from: {From} and contains: {Body}"}
 
 
 
