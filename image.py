@@ -3,9 +3,9 @@ import os
 from dotenv import load_dotenv
 from imgurpython import ImgurClient
 
-import messaging
+import my_twilio
 import asyncio
-from messaging import *
+from my_twilio import *
 from webdriver_handler import create_driver, create_local_driver
 
 """
@@ -59,7 +59,7 @@ def upload_screenshot(driver=None, new_pic=True, send_text=False, filename=None,
         path = take_screenshot(driver, filename, path)
     link = upload_image(path)
     if send_text:
-        messaging.send_text(("The link is: " + link), os.getenv("PHONE_NUMBER"))
+        my_twilio.send_text(("The link is: " + link), os.getenv("PHONE_NUMBER"))
     if link == "":
         return "Error"
     return link

@@ -23,7 +23,7 @@ def send_text(message, phone_number=None):
     message = client.messages \
         .create(
         body=message,
-        from_='+1' + os.environ['TWILIO_PHONE_NUMBER'] ,
+        from_='+1' + os.environ['TWILIO_PHONE_NUMBER'],
         to='+1' + phone_number
     )
     return message.sid

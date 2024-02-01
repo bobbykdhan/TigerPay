@@ -11,7 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 def get_card():
     load_dotenv()
-    driver = create_local_driver()
+    driver = create_local_driver(headless=True)
     wait = WebDriverWait(driver, 50, poll_frequency=1)
     driver.get("http://tigerspend.rit.edu")
     sign_in(driver, url="https://tigerspend.rit.edu/login.php?cid=105&")
@@ -26,9 +26,8 @@ def get_card():
 
     driver.get(card_link)
     time.sleep(1)
-    print("Card image is at" + upload_screenshot(driver,send_text=False))
+    print("Card image is at" + upload_screenshot(driver,send_text=True))
 
-    input("Press enter to continue")
     return driver
 
 
