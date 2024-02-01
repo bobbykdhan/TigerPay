@@ -1,3 +1,4 @@
+import asyncio
 import time
 
 import uvicorn
@@ -24,12 +25,12 @@ async def root():
     return {"message": "Hello World"}
 
 
-def getcard():
-    card_handling.get_card()
+async def getcard():
+    await asyncio.to_thread(card_handling.get_card)
 
 @app.get("/get_card")
 async def get_card(BackgroundTasks: BackgroundTasks):
-    BackgroundTasks.add_task(getcard())
+    BackgroundTasks.add_task(getcard)
     return {"message": "Card requested"}
 
 

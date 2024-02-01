@@ -15,11 +15,7 @@ def get_card():
     driver = create_local_driver(headless=True)
     wait = WebDriverWait(driver, 50, poll_frequency=1)
     driver.get("http://tigerspend.rit.edu")
-    sign_in(driver, url="https://tigerspend.rit.edu/login.php?cid=105&")
-
-    wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "jsa_main-nav")))
-    driver.get("https://tigerspend.rit.edu/virtualcardnew.php?")
-
+    sign_in(driver, url="https://tigerspend.rit.edu/login.php?cid=105&wason=/virtualcardnew.php")
 
     wait.until(ec.visibility_of_element_located((By.ID, "frontimage")))
 
