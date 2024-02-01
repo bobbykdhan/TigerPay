@@ -16,17 +16,25 @@ def get_card():
     wait = WebDriverWait(driver, 50, poll_frequency=1)
     driver.get("http://tigerspend.rit.edu")
     sign_in(driver, url="https://tigerspend.rit.edu/login.php?cid=105&wason=/virtualcardnew.php")
-
-    wait.until(ec.visibility_of_element_located((By.ID, "frontimage")))
+    try:
+        wait.until(ec.visibility_of_element_located((By.ID, "frontimage")))
+    except Exception as e:
+        send_text(f"An error occurred while logging in (probably an out of sync DUO count - {os.getenv('COUNT')})")
+        return
 
     card_link = driver.find_element(By.ID, "frontimage").get_attribute("src")
 
     save_path = os.path.abspath("./screenshots/screen.png")
 
     response = requests.get(card_link)
-    with open(save_path, 'wb') as file:
-        file.write(response.content) if response.status_code == 200 else print(
-            f"Failed to download image. Status code: {response.status_code}")
+    with (open(save_path, 'wb') as file):
+
+        if response.status_code == 200:
+            file.write(response.content)
+        else:
+            print(f"Failed to download image. Status code: {response.status_code}")
+            send_text("An error occurred while downloading image")
+            return
 
     print("Card image is at " + upload_screenshot(driver,send_text=True, new_pic=False, filename="screen"))
 
