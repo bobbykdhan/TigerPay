@@ -32,4 +32,5 @@ def get_card():
 
 
 
-get_card()
+if __name__ == "__main__":
+    get_card()
