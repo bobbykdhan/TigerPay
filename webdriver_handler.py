@@ -1,3 +1,5 @@
+import os.path
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.service import Service as FirefoxService
@@ -44,4 +46,9 @@ def create_local_driver(firefox=False, headless=False, screen_size=(3000, 3000))
             print(e)
             print("Unable to use Chrome. Using Firefox instead.")
             return webdriver.Firefox(service=service, options=options)
+
+if __name__ == "__main__":
+    driver = create_local_driver(headless=True)
+    driver.get("https://www.youtube.com")
+    driver.save_screenshot(os.path.join(os.getcwd(), "test.png"))
 
