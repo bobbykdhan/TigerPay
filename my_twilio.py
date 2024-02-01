@@ -28,18 +28,3 @@ def send_text(message, phone_number=None):
     )
     return message.sid
 
-
-def handle_message():
-    pass
-
-
-def cancel_order(driver):
-    pass
-
-
-def failed_order(driver, reason):
-    pass
-
-
-def repeat_order(driver):
-    pass

@@ -38,7 +38,7 @@ def sign_in(driver, no_duo=False, username=None, password=None, url=None):
             print(e)
 
 
-def duo(driver,trust_broswer=False):
+def duo(driver, trust_browser=False):
     wait = WebDriverWait(driver, 50, poll_frequency=1)
     wait.until(ec.element_to_be_clickable((By.CLASS_NAME, "button--link")))
     driver.find_element(By.CLASS_NAME, "button--link").click()
@@ -50,7 +50,7 @@ def duo(driver,trust_broswer=False):
     wait.until(ec.visibility_of_element_located((By.ID, "passcode-input")))
     driver.find_element(By.ID, "passcode-input").send_keys(get_code())
     driver.find_element(By.XPATH, "//*[text()='Verify']").click()
-    if trust_broswer:
+    if trust_browser:
         try:
             wait.until(ec.visibility_of_element_located((By.ID, "trust-browser-button")))
             driver.find_element(By.ID, "trust-browser-button").click()
@@ -62,7 +62,6 @@ def duo(driver,trust_broswer=False):
 
 
     return driver
+
 # if __name__ == '__main__':
-#     driver = create_driver()
-#     x = _thread.start_new_thread(cancelFunction, (driver,))
-#     loop_driver(driver)
+

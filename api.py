@@ -35,16 +35,6 @@ async def get_card(BackgroundTasks: BackgroundTasks):
 
 
 
-# @app.get("/testScreenshot")
-# async def testScreenshot():
-#     driver = create_driver()
-#     driver.get("https://www.youtube.com")
-#     print("Created driver")
-#     time.sleep(5)
-#     link = upload_screenshot(driver, True, True)
-#     print("Uploaded screenshot")
-#     return {"message": "Screenshot is at: " + link}
-
 @app.get('/sms')
 @app.post('/sms')
 async def chat(From: str = Form(...), Body: str = Form(...)):

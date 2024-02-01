@@ -51,4 +51,6 @@ if __name__ == "__main__":
     driver = create_local_driver(headless=True)
     driver.get("https://www.youtube.com")
     driver.save_screenshot(os.path.join(os.getcwd(), "test.png"))
+    print("Successfully Created Driver")
+    driver.quit()
 
