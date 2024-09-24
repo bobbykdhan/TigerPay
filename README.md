@@ -1,4 +1,4 @@
-# TigerPay
+# Tiger Pay
 Allows user to request a text link to their RIT Tiger Pay card without having to log in everytime.
 
 
